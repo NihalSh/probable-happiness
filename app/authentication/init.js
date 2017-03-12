@@ -15,7 +15,7 @@ passport.use(new GoogleStrategy({
 	(accessToken, refreshToken, profile, done) => {
 		let regex = /.*\@srmuniv\.edu\.in/
 		if (profile.emails[0].value.search(regex) != -1) {
-			return done(null, profile.emails[0].value)
+			return done(null, { email: profile.emails[0].value })
 		} else {
 			return done(null, false)
 		}

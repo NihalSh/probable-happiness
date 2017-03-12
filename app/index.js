@@ -3,6 +3,7 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 const helmet = require('helmet')
+const mongoose = require('mongoose')
 const passport = require('passport')
 const session = require('express-session')
 const RedisStore = require('connect-redis')(session)
@@ -10,6 +11,13 @@ const RedisStore = require('connect-redis')(session)
 const config = require('../config')
 
 const app = express()
+
+const opts = {
+	server: {
+		socketOptions: { keepAlive: 1 }
+	}
+}
+mongoose.connect(config.mongo.connectionString, opts)
 
 switch(app.get('env')) {
 case 'development':
