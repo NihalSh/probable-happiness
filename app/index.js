@@ -2,9 +2,7 @@
 
 const bodyParser = require('body-parser')
 const express = require('express')
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
 const helmet = require('helmet')
-const passport = require('passport')
 const session = require('express-session')
 const RedisStore = require('connect-redis')(session)
 

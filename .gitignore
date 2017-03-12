@@ -1,3 +1,5 @@
+config/index.js
+dump.rdb
 # Logs
 logs
 *.log

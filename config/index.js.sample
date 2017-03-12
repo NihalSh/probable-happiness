@@ -1,0 +1,13 @@
+const config = {}
+
+config.redisStore = {
+	secret: '#TODO',
+	url: '#TODO'
+}
+config.oauth = {
+	clientId: '#TODO',
+	client_secret: '#TODO',
+	callback: '#TODO'
+}
+
+module.exports = config
