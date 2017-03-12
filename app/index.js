@@ -56,6 +56,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 require('./authentication').init(app)
+require('./academia').init(app)
 
 app.use((req, res) => {
 	res.sendStatus(404)
