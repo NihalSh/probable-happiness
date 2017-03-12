@@ -3,6 +3,7 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
 
 const authenticationMiddleware = require('./middleware')
 const config = require('../../config')
+const User = require('../user').model
 
 passport.serializeUser((user, done) => done(null, user))
 passport.deserializeUser((user, done) => done(null, user))
@@ -26,8 +27,21 @@ function initPassport (app) {
 
 	app.get('/login', passport.authenticate('google', { scope: ['email'] }))
 	app.get('/login/callback', passport.authenticate('google', { failureRedirect: '/' }),
-		function(req, res) {
-		  res.redirect('/dashboard')
+		(req, res) => {
+			let promise = User.findOne({'email': req.user.email}).exec()
+			
+			promise.then((user) => {
+				if (user) {
+					req.log.trace(user);
+					res.redirect('/dashboard')
+				} else {
+					req.log.info("no user found, redirecting to academia")
+					res.redirect('/academia')
+				}
+			}).catch((err) => {
+				req.log.error(err)
+				res.sendStatus('500')
+			})
 		}
 	)
 	

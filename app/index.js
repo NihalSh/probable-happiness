@@ -13,11 +13,15 @@ const config = require('../config')
 const app = express()
 
 const opts = {
+	config: {
+		autoIndex: false
+	},
 	server: {
 		socketOptions: { keepAlive: 1 }
 	}
 }
 mongoose.connect(config.mongo.connectionString, opts)
+mongoose.Promise = global.Promise
 
 switch(app.get('env')) {
 case 'development':
