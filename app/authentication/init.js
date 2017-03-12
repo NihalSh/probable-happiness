@@ -13,16 +13,17 @@ passport.use(new GoogleStrategy({
 		callbackURL: config.oauth.callback
 	},
 	(accessToken, refreshToken, profile, done) => {
-		console.log(profile.emails[0].value)//change here
-		return done(null, profile.emails[0].value)
+		let regex = /.*\@srmuniv\.edu\.in/
+		if (profile.emails[0].value.search(regex) != -1) {
+			return done(null, profile.emails[0].value)
+		} else {
+			return done(null, false)
+		}
 	}
 ))
 
 function initPassport (app) {
 
-	app.use(passport.initialize())
-	app.use(passport.session())
-	
 	app.get('/login', passport.authenticate('google', { scope: ['email'] }))
 	app.get('/login/callback', passport.authenticate('google', { failureRedirect: '/' }),
 		function(req, res) {

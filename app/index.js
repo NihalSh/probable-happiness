@@ -3,6 +3,7 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 const helmet = require('helmet')
+const passport = require('passport')
 const session = require('express-session')
 const RedisStore = require('connect-redis')(session)
 
@@ -38,6 +39,9 @@ app.use(session({
 }))
 
 app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 require('./authentication').init(app)
 
