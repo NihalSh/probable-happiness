@@ -5,8 +5,21 @@ const authenticationMiddleware = require('./middleware')
 const config = require('../../config')
 const User = require('../user').model
 
-passport.serializeUser((user, done) => done(null, user))
-passport.deserializeUser((user, done) => done(null, user))
+passport.serializeUser((user, done) => {
+	done(null, { email: user})
+})
+passport.deserializeUser((user, done) => {
+	let promise = User.findOne({'email': user.email}).exec()
+	promise.then((json) => {
+		if (json) {
+			done(null, json)
+		} else {
+			done(null, user)
+		}
+	}).catch((err) => {
+			console.log(err);
+	})
+})
 
 passport.use(new GoogleStrategy({
 		clientID: config.oauth.clientId,
@@ -16,7 +29,7 @@ passport.use(new GoogleStrategy({
 	(accessToken, refreshToken, profile, done) => {
 		let regex = /.*\@srmuniv\.edu\.in/
 		if (profile.emails[0].value.search(regex) != -1) {
-			return done(null, { email: profile.emails[0].value })
+			return done(null, profile.emails[0].value)
 		} else {
 			return done(null, false)
 		}
