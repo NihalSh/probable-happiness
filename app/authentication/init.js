@@ -40,7 +40,7 @@ function initPassport (app) {
 
 	app.get('/login', passport.authenticate('google', { scope: ['email'] }))
 	app.get('/login/callback', passport.authenticate('google', { failureRedirect: '/' }),
-		(req, res) => {
+		(req, res, next) => {
 			let promise = User.findOne({'email': req.user.email}).exec()
 			
 			promise.then((user) => {
@@ -52,8 +52,7 @@ function initPassport (app) {
 					res.redirect('/academia')
 				}
 			}).catch((err) => {
-				req.log.error(err)
-				res.sendStatus('500')
+				next(err)
 			})
 		}
 	)
