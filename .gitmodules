@@ -1,3 +1,0 @@
-[submodule "services/a2o"]
-	path = services/a2o
-	url = https://github.com/NihalSh/a2o.git
