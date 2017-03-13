@@ -12,7 +12,9 @@
     "helmet": "^3.5.0",
     "mongoose": "^4.8.6",
     "passport": "^0.3.2",
-    "passport-google-oauth": "^1.0.0"
+    "passport-google-oauth": "^1.0.0",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.3"
   },
   "devDependencies": {},
   "scripts": {
