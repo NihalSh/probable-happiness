@@ -8,6 +8,7 @@ const User = require('../user').model
 module.exports = (app) => {
 	app.get('/academia', passport.authenticationMiddleware(), (req, res, next) => {
 		if (req.user.name) {
+			req.log.info('existing user')
 			next()
 		} else {
 			res.send(`login page for${req.user.email} #TODO`)
@@ -15,6 +16,7 @@ module.exports = (app) => {
 	})
 	app.post('/academia', passport.authenticationMiddleware(), (req, res, next) => {
 		if (req.user.name) {
+			req.log.info('existing user')
 			next()
 		} else {
 			if (req.body && req.body.password) {
@@ -37,8 +39,21 @@ module.exports = (app) => {
 						let mapped = mapper(response)
 						if (mapped !== null) {
 							console.log(mapped)
+							return new User({
+								email: req.user.email,
+								name: mapped['Name'],
+								registrationNumber: mapped['Registration Number'],
+								program: mapped['Program'],
+								department: mapped['Department'],
+								semester: +mapped['Semester']
+							}).save();
+						} else {
+							throw new Error('academia response parsing error')
 						}
 						res.send(`authenticated user #TODO`)
+					}).then((user) => {
+						req.log.info('user data entered in the database')
+						res.redirect('/dashboard')
 					}).catch((err) => {
 						req.log.error(err)
 						res.sendStatus(401)
