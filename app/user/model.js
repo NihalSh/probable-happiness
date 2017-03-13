@@ -10,6 +10,23 @@ let schema = mongoose.Schema({
 	name: {
 		type: String,
 		required: true
+	},
+	registrationNumber: {
+		type: String,
+		required: true,
+		unique: true
+	},
+	program: {
+		type: String,
+		required: true
+	},
+	department: {
+		type: String,
+		required: true
+	},
+	semester: {
+		type: Number,
+		required: true
 	}
 })
 
