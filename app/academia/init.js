@@ -5,15 +5,22 @@ const request = require('request-promise-native')
 const config = require('../../config')
 const User = require('../user').model
 
+
+
 module.exports = (app) => {
+
 	app.get('/academia', passport.authenticationMiddleware(), (req, res, next) => {
 		if (req.user.name) {
 			req.log.info('existing user')
 			next()
 		} else {
-			res.send(`login page for${req.user.email} #TODO`)
+			res.render('academia/academia-login', { 
+				email: req.user.email
+				layout: false
+			})
 		}
 	})
+
 	app.post('/academia', passport.authenticationMiddleware(), (req, res, next) => {
 		if (req.user.name) {
 			req.log.info('existing user')
