@@ -1,6 +1,8 @@
 "use strict";
+const path = require('path')
 
 const bodyParser = require('body-parser')
+const exphbs  = require('express-handlebars');
 const express = require('express')
 const helmet = require('helmet')
 const mongoose = require('mongoose')
@@ -22,6 +24,18 @@ const opts = {
 }
 mongoose.connect(config.mongo.connectionString, opts)
 mongoose.Promise = global.Promise
+
+app.engine('.hbs', exphbs({
+  defaultLayout: 'layout',
+  extname: '.hbs',
+  layoutsDir: path.join(__dirname),
+  partialsDir: path.join(__dirname)
+}))
+
+app.set('view engine', '.hbs')
+app.set('views', path.join(__dirname))
+
+app.use(express.static(path.join(__dirname, 'public'))
 
 switch(app.get('env')) {
 case 'development':
