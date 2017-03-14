@@ -35,7 +35,7 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs')
 app.set('views', path.join(__dirname))
 
-app.use(express.static(path.join(__dirname, 'public'))
+app.use(express.static(path.join(__dirname, 'public')))
 
 switch(app.get('env')) {
 case 'development':
@@ -69,6 +69,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(passport.initialize())
 app.use(passport.session())
 
+require('./home').init(app)
 require('./authentication').init(app)
 require('./academia').init(app)
 

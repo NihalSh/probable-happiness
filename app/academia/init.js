@@ -15,7 +15,7 @@ module.exports = (app) => {
 			next()
 		} else {
 			res.render('academia/academia-login', { 
-				email: req.user.email
+				email: req.user.email,
 				layout: false
 			})
 		}
