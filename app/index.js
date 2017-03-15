@@ -75,7 +75,7 @@ require('./academia').init(app)
 require('./dashboard').init(app)
 require('./dashboard-academics').init(app)
 require('./dashboard-contactDetails').init(app)
-require('./dashboard-peronalDetails').init(app)
+require('./dashboard-personalDetails').init(app)
 require('./dashboard-schoolingDetails').init(app)
 require('./dashboard-skillsAndInterests').init(app)
 

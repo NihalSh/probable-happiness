@@ -12,6 +12,7 @@ module.exports = (app) => {
 	app.get('/academia', passport.authenticationMiddleware(), (req, res, next) => {
 		if (req.user.name) {
 			req.log.info('existing user')
+			res.redirect('/dashboard')
 			next()
 		} else {
 			res.render('academia/academia-login', { 
