@@ -1,5 +1,5 @@
 module.exports = (app) => {
-	app.get('/', passport.authenticationMiddleware(), (req, res) => {
+	app.get('/dashboard', passport.authenticationMiddleware(), (req, res) => {
 		res.render('dashboard/dashboard')
 	})
 }
