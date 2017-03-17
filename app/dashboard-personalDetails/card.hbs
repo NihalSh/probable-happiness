@@ -1,0 +1,125 @@
+<div class="card">
+    <form action="" class="form-horizontal" method="POST">
+        <div class="card-header card-header-text" data-background-color="rose">
+            <h4 class="card-title">Information</h4>
+        </div>
+        <div class="card-content">
+            <div class="row">
+                <label class="col-sm-2 label-on-left">Name</label>
+                <div class="col-sm-7">
+                    <div class="form-group label-floating">
+                        <label class="control-label"></label>
+                        <p class="form-control-static">{{name}}</p>
+                    </div>
+                </div>
+                <label class="col-sm-3 label-on-right">
+                </label>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 label-on-left">Registration Number</label>
+                <div class="col-sm-7">
+                    <div class="form-group label-floating">
+                        <label class="control-label"></label>
+                        <p class="form-control-static">{{regno}}</p>
+                    </div>
+                </div>
+                <label class="col-sm-3 label-on-right">
+                </label>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 label-on-left">Boarding</label>
+                <div class="col-sm-7">
+                    <div class="form-group label-floating">
+                        <label class="control-label"></label>
+                        <select class="form-control" name="boarding">
+                            <option value="false" {{#if boarding}}{{else}}selected{{/if}}>Day-Scholar</option>
+                            <option value="true" {{#if boarding}}selected{{/if}}>Hosteler</option>
+                        </select>
+                    </div>
+                </div>
+                <label class="col-sm-3 label-on-right">
+                </label>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 label-on-left">Blood Group</label>
+                <div class="col-sm-7">
+                    <div class="form-group label-floating">
+                        <label class="control-label"></label>
+                        <p class="form-control-static">{{bloodGroup}}</p>
+                    </div>
+                </div>
+                <label class="col-sm-3 label-on-right">
+                </label>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 label-on-left">Date of Birth</label>
+                <div class="col-sm-7">
+                    <div class="form-group label-floating">
+                        <label class="control-label"></label>
+                        <p class="form-control-static">{{dob}}</p>
+                    </div>
+                </div>
+                <label class="col-sm-3 label-on-right">
+                </label>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 label-on-left">Gender</label>
+                <div class="col-sm-7">
+                    <div class="form-group label-floating">
+                        <label class="control-label"></label>
+                        <p class="form-control-static">{{gender}}</p>
+                    </div>
+                </div>
+                <label class="col-sm-3 label-on-right">
+                </label>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 label-on-left">Height (cms)</label>
+                <div class="col-sm-7">
+                    <div class="form-group label-floating">
+                        <label class="control-label"></label>
+                        <input class="form-control" name="height" type="number" step="0.1" min="1" {{#if height}}value="{{height}}"{{/if}}>
+                    </div>
+                </div>
+                <label class="col-sm-3 label-on-right">
+                </label>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 label-on-left">Weight (kgs)</label>
+                <div class="col-sm-7">
+                    <div class="form-group label-floating">
+                        <label class="control-label"></label>
+                        <input class="form-control" name="weight" type="number" step="0.1" min="1" {{#if weight}}value="{{weight}}"{{/if}}>
+                    </div>
+                </div>
+                <label class="col-sm-3 label-on-right">
+                </label>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 label-on-left">Father's Name</label>
+                <div class="col-sm-7">
+                    <div class="form-group label-floating">
+                        <label class="control-label"></label>
+                        <p class="form-control-static">{{fName}}</p>
+                    </div>
+                </div>
+                <label class="col-sm-3 label-on-right">
+                </label>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 label-on-left">Mother's Name</label>
+                <div class="col-sm-7">
+                    <div class="form-group label-floating">
+                        <label class="control-label"></label>
+                        <input class="form-control" name="mName" type="text" {{#if mName}}value="{{mName}}"{{/if}}>
+                    </div>
+                </div>
+                <label class="col-sm-3 label-on-right">
+                </label>
+            </div>
+            <div class="card-footer text-center">
+                <button class="btn btn-rose btn-fill" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
