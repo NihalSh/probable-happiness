@@ -1,0 +1,13 @@
+{{#> layout}}
+		{{> sidebar contactActive=true name=name}}
+		<div class="main-panel">
+			{{> navbar tabName="Contact Details"}}
+			<div class="content">
+				<div class="container-fluid">
+					<div class="col-md-12">
+					{{> dashboard-contactDetails/card}}
+					</div>
+				</div>
+			</div>
+		</div>
+{{/layout}}
