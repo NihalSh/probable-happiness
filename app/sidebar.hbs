@@ -13,62 +13,69 @@
             </div>
         </div>
         <ul class="nav">
-            {{#if dashboardActive}}
-                <li class="active">
+            {{#if academia}}
+            <li class="active">
+                <a href="/academia"><i class="material-icons">perm_identity</i>
+                <p>Academia</p></a>
+            </li>
             {{else}}
-                <li>
+                {{#if dashboardActive}}
+                    <li class="active">
+                {{else}}
+                    <li>
+                {{/if}}
+                    <a href="/dashboard"><i class="material-icons">dashboard</i>
+                    <p>Dashboard</p></a>
+                </li>
+                {{#if evarsityActive}}
+                    <li class="active">
+                {{else}}
+                    <li>
+                {{/if}}            
+                    <a href="/dashboard/evarsity"><i class="material-icons">perm_identity</i>
+                    <p>e Varsity</p></a>
+                </li>
+                {{#if academicActive}}
+                    <li class="active">
+                {{else}}
+                    <li>
+                {{/if}}
+                    <a href="/dashboard/academics"><i class="material-icons">description</i>
+                    <p>Academic Details</p></a>
+                </li>
+                {{#if contactActive}}
+                    <li class="active">
+                {{else}}
+                    <li>
+                {{/if}}
+                    <a href="/dashboard/contactDetails"><i class="material-icons">description</i>
+                    <p>Contact Details</p></a>
+                </li>
+                {{#if personalActive}}
+                    <li class="active">
+                {{else}}
+                    <li>
+                {{/if}}
+                    <a href="/dashboard/personalDetails"><i class="material-icons">description</i>
+                    <p>Personal Details</p></a>
+                </li>
+                {{#if skillsActive}}
+                    <li class="active">
+                {{else}}
+                    <li>
+                {{/if}}
+                    <a href="/dashboard/skillsAndInterests"><i class="material-icons">description</i>
+                    <p>Skills and Interests</p></a>
+                </li>
+                {{#if askusActive}}
+                    <li class="active">
+                {{else}}
+                    <li>
+                {{/if}}
+                    <a href="#"><i class="material-icons">question_answer</i>
+                    <p>Contact Us</p></a>
+                </li>
             {{/if}}
-                <a href="/dashboard"><i class="material-icons">dashboard</i>
-                <p>Dashboard</p></a>
-            </li>
-            {{#if evarsityActive}}
-                <li class="active">
-            {{else}}
-                <li>
-            {{/if}}            
-                <a href="/dashboard/evarsity"><i class="material-icons">perm_identity</i>
-                <p>e Varsity</p></a>
-            </li>
-            {{#if academicActive}}
-                <li class="active">
-            {{else}}
-                <li>
-            {{/if}}
-                <a href="/dashboard/academics"><i class="material-icons">description</i>
-                <p>Academic Details</p></a>
-            </li>
-            {{#if contactActive}}
-                <li class="active">
-            {{else}}
-                <li>
-            {{/if}}
-                <a href="/dashboard/contactDetails"><i class="material-icons">description</i>
-                <p>Contact Details</p></a>
-            </li>
-            {{#if personalActive}}
-                <li class="active">
-            {{else}}
-                <li>
-            {{/if}}
-                <a href="/dashboard/personalDetails"><i class="material-icons">description</i>
-                <p>Personal Details</p></a>
-            </li>
-            {{#if skillsActive}}
-                <li class="active">
-            {{else}}
-                <li>
-            {{/if}}
-                <a href="/dashboard/skillsAndInterests"><i class="material-icons">description</i>
-                <p>Skills and Interests</p></a>
-            </li>
-            {{#if askusActive}}
-                <li class="active">
-            {{else}}
-                <li>
-            {{/if}}
-                <a href="#"><i class="material-icons">question_answer</i>
-                <p>Contact Us</p></a>
-            </li>
         </ul>
     </div>
 </div>
