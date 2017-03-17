@@ -63,6 +63,14 @@ app.use(session({
 	saveUninitialized: false
 }))
 
+app.use((req, res, next) => {
+	if (!req.session) {
+		throw new Error('session store not working')
+	} else {
+		next()
+	}
+})
+
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(passport.initialize())
