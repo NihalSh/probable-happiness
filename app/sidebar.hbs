@@ -7,7 +7,7 @@
     </div>
     <div class="sidebar-wrapper">
         <div class="user">
-            <div class="photo"><img alt="avatar" src="img/default-avatar.png"></div>
+            <div class="photo"><img alt="avatar" src="/img/default-avatar.png"></div>
             <div class="info">
                 <a>{{name}}</a>
             </div>
@@ -18,7 +18,7 @@
             {{else}}
                 <li>
             {{/if}}
-                <a href="#"><i class="material-icons">dashboard</i>
+                <a href="/dashboard"><i class="material-icons">dashboard</i>
                 <p>Dashboard</p></a>
             </li>
             {{#if evarsityActive}}
@@ -34,7 +34,7 @@
             {{else}}
                 <li>
             {{/if}}
-                <a href="#"><i class="material-icons">description</i>
+                <a href="/dashboard/academics"><i class="material-icons">description</i>
                 <p>Academic Details</p></a>
             </li>
             {{#if contactActive}}
@@ -42,7 +42,7 @@
             {{else}}
                 <li>
             {{/if}}
-                <a href="#"><i class="material-icons">description</i>
+                <a href="/dashboard/contactDetails"><i class="material-icons">description</i>
                 <p>Contact Details</p></a>
             </li>
             {{#if personalActive}}
@@ -50,7 +50,7 @@
             {{else}}
                 <li>
             {{/if}}
-                <a href="#"><i class="material-icons">description</i>
+                <a href="/dashboard/personalDetails"><i class="material-icons">description</i>
                 <p>Personal Details</p></a>
             </li>
             {{#if skillsActive}}
@@ -58,7 +58,7 @@
             {{else}}
                 <li>
             {{/if}}
-                <a href="#"><i class="material-icons">description</i>
+                <a href="/dashboard/skillsAndInterests"><i class="material-icons">description</i>
                 <p>Skills and Interests</p></a>
             </li>
             {{#if askusActive}}
