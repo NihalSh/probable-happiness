@@ -1,0 +1,42 @@
+<div class="card" data-color="rose" id="wizardProfile">
+    <form id="TypeValidation" class="form-horizontal" action="/academia" method="POST">
+        <div class="card-header card-header-text" data-background-color="rose">
+            <h4 class="card-title">Login with Academia</h4>
+        </div>
+        <div class="card-content">
+        	<div class="row">
+        		<br>
+        	</div>
+            <div class="row">
+                <div class="input-group col-xs-12 col-sm-8 col-sm-offset-2">
+                    <span class="input-group-addon">
+                    <i class="material-icons">email</i>
+                    </span>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Email (@srmuniv.edu.in)
+                        </label>
+                        <p class="form-control-static">{{email}}</p>
+                    </div>
+                </div>
+            </div>
+        	<div class="row">
+        		<br>
+        	</div>
+            <div class="row">
+                <div class="input-group col-xs-12 col-sm-8 col-sm-offset-2">
+                    <span class="input-group-addon">
+                    <i class="material-icons">vpn_key</i>
+                    </span>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Password
+                        </label>
+                        <input name="password" type="password" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <button type="submit" class="btn btn-rose btn-fill">Login</button>
+        </div>
+    </form>
+</div>
