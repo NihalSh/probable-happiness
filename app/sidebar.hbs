@@ -1,0 +1,74 @@
+<div class="sidebar" data-active-color="rose" data-background-color="black">
+    <div class="logo">
+        <a class="simple-text">Placements</a>
+    </div>
+    <div class="logo logo-mini">
+        <a class="simple-text">PP</a>
+    </div>
+    <div class="sidebar-wrapper">
+        <div class="user">
+            <div class="photo"><img alt="avatar" src="img/default-avatar.png"></div>
+            <div class="info">
+                <a>{{name}}</a>
+            </div>
+        </div>
+        <ul class="nav">
+            {{#if dashboardActive}}
+                <li class="active">
+            {{else}}
+                <li>
+            {{/if}}
+                <a href="#"><i class="material-icons">dashboard</i>
+                <p>Dashboard</p></a>
+            </li>
+            {{#if evarsityActive}}
+                <li class="active">
+            {{else}}
+                <li>
+            {{/if}}            
+                <a href="#"><i class="material-icons">perm_identity</i>
+                <p>e Varsity</p></a>
+            </li>
+            {{#if academicActive}}
+                <li class="active">
+            {{else}}
+                <li>
+            {{/if}}
+                <a href="#"><i class="material-icons">description</i>
+                <p>Academic Details</p></a>
+            </li>
+            {{#if contactActive}}
+                <li class="active">
+            {{else}}
+                <li>
+            {{/if}}
+                <a href="#"><i class="material-icons">description</i>
+                <p>Contact Details</p></a>
+            </li>
+            {{#if personalActive}}
+                <li class="active">
+            {{else}}
+                <li>
+            {{/if}}
+                <a href="#"><i class="material-icons">description</i>
+                <p>Personal Details</p></a>
+            </li>
+            {{#if skillsActive}}
+                <li class="active">
+            {{else}}
+                <li>
+            {{/if}}
+                <a href="#"><i class="material-icons">description</i>
+                <p>Skills and Interests</p></a>
+            </li>
+            {{#if askusActive}}
+                <li class="active">
+            {{else}}
+                <li>
+            {{/if}}
+                <a href="#"><i class="material-icons">question_answer</i>
+                <p>Contact Us</p></a>
+            </li>
+        </ul>
+    </div>
+</div>

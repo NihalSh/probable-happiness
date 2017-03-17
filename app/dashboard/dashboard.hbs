@@ -1,34 +1,13 @@
-		<div class="content">
-		<div class="container-fluid">
-		<div class="col-md-12">
-			<div class="card">
-					<div class="card-header card-header-text" data-background-color="rose">
-						<h4 class="card-title">Overview</h4>
+{{#> layout}}
+		{{> sidebar dashboardActive=true }}
+		<div class="main-panel">
+			{{> navbar tabName="Dashboard"}}
+			<div class="content">
+				<div class="container-fluid">
+					<div class="col-md-12">
+					{{> dashboard/card name=name registrationNumber=registrationNumber program=program department=department semester=semester}}
 					</div>
-					<div class="card-content">
-						<div class="row">
-							<label class="col-sm-2">Name</label>
-							<p>{{name}}</p>
-						</div>
-						<div class="row">
-							<label class="col-sm-2">Registration Number</label>
-							<p>{{registrationNumber}}</p>
-						</div>
-						<div class="row">
-							<label class="col-sm-2">Program</label>
-							<p>{{program}}</p>
-						</div>
-						<div class="row">
-							<label class="col-sm-2">Department</label>
-							<p>{{department}}</p>
-						</div>
-						<div class="row">
-							<label class="col-sm-2">Semester</label>
-							<p>{{semester}}</p>
-						</div>
-					</div>
-				</div>
-				</div>
 				</div>
 			</div>
 		</div>
+{{/layout}}
