@@ -17,4 +17,7 @@ module.exports = (app) => {
 			}
 		)
 	})
+	app.post('/dashboard/personalDetails', passport.authenticationMiddleware(), (req, res) => {
+		res.send(req.body)
+	})
 }
