@@ -20,4 +20,7 @@ module.exports = (app) => {
 			}
 		)
 	})
+	app.post('/dashboard/academics', passport.authenticationMiddleware(), (req, res) => {
+		res.send(req.body)
+	})
 }
