@@ -1,0 +1,52 @@
+<div class="card">
+    <form action="" class="form-horizontal" method="POST">
+        <div class="card-header card-header-text" data-background-color="rose">
+            <h4 class="card-title">Information</h4>
+        </div>
+        <div class="card-content">
+            <div class="row">
+                <label class="col-sm-2 label-on-left">Programming Languages</label>
+                <div class="col-sm-7">
+                    <div class="form-group label-floating">
+                        <label class="control-label"></label>
+                        <input class="form-control" name="programmingLanguages" type="text" placeholder="C, C++, Java, Python" {{#if programmingLanguages}}value="{{programmingLanguages}}"{{/if}}>
+                    </div>
+                </div>
+                <label class="col-sm-3 label-on-right"><code>Comma-separated values</code></label>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 label-on-left">Languages</label>
+                <div class="col-sm-7">
+                    <div class="form-group label-floating">
+                        <label class="control-label"></label>
+                        <input class="form-control" name="languages" type="text" placeholder="English, French, Hindi, Tamil" {{#if languages}}value="{{languages}}"{{/if}}>
+                    </div>
+                </div>
+                <label class="col-sm-3 label-on-right"><code>Comma-separated values</code></label>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 label-on-left">Co-curricular Activities</label>
+                <div class="col-sm-7">
+                    <div class="form-group label-floating">
+                        <label class="control-label"></label>
+                        <input class="form-control" name="cocurricular" type="text" placeholder="Drama, Music, Organization exhibitions, Sports" {{#if cocurricular}}value="{{cocurricular}}"{{/if}}>
+                    </div>
+                </div>
+                <label class="col-sm-3 label-on-right"><code>Comma-separated values</code></label>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 label-on-left">Extracurricular Activities</label>
+                <div class="col-sm-7">
+                    <div class="form-group label-floating">
+                        <label class="control-label"></label>
+                        <input class="form-control" name="extracurricular" type="text" placeholder="Hackathons, Model United Nations, Workshops" {{#if extracurricular}}value="{{extracurricular}}"{{/if}}>
+                    </div>
+                </div>
+                <label class="col-sm-3 label-on-right"><code>Comma-separated values</code></label>
+            </div>
+            <div class="card-footer text-center">
+                <button class="btn btn-rose btn-fill" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
