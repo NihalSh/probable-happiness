@@ -58,7 +58,6 @@ module.exports = (app) => {
 						} else {
 							throw new Error('academia response parsing error')
 						}
-						res.send(`authenticated user #TODO`)
 					}).then((user) => {
 						req.log.info('user data entered in the database')
 						res.redirect('/dashboard')
