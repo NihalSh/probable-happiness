@@ -12,7 +12,8 @@ module.exports = (app) => {
 				email: req.user.email,
 				pEmail: req.user.personalEmail,
 				parentsTel: req.user.parentsNumber,
-				personalTel: req.user.personalNumber
+				personalTel: req.user.personalNumber,
+				evarsity: req.user.evarsity
 			}
 		)
 	})

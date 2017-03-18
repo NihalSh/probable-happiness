@@ -27,14 +27,16 @@
                     <a href="/dashboard"><i class="material-icons">dashboard</i>
                     <p>Dashboard</p></a>
                 </li>
-                {{#if evarsityActive}}
-                    <li class="active">
-                {{else}}
-                    <li>
-                {{/if}}            
-                    <a href="/dashboard/evarsity"><i class="material-icons">perm_identity</i>
-                    <p>e Varsity</p></a>
-                </li>
+                {{#unless evarsity}}
+                    {{#if evarsityActive}}
+                        <li class="active">
+                    {{else}}
+                        <li>
+                    {{/if}}            
+                        <a href="/dashboard/evarsity"><i class="material-icons">perm_identity</i>
+                        <p>e Varsity</p></a>
+                    </li>
+                {{/unless}}
                 {{#if academicActive}}
                     <li class="active">
                 {{else}}

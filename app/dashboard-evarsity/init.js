@@ -22,7 +22,8 @@ module.exports = (app) => {
 					res.render('dashboard-evarsity/evarsity',
 						{
 							regno: req.user.registrationNumber,
-							captcha: captcha
+							captcha: captcha,
+							evarsity: req.user.evarsity
 						}
 					)
 				})
@@ -64,6 +65,7 @@ module.exports = (app) => {
 					return User.findOneAndUpdate({ email: req.user.email },
 						{
 							$set: {
+								evarsity: true,
 								sgpa1: grades.sgpa1,
 								sgpa2: grades.sgpa2,
 								sgpa3: grades.sgpa3,
@@ -75,6 +77,9 @@ module.exports = (app) => {
 								dateOfBirth: new Date(profile["Date of Birth"]),
 								fatherName: profile["Father Name"],
 								permanentAddress: profile["Address"]
+							},
+							$unset: {
+								evarsitySession: null
 							}
 						}).exec()
 				})

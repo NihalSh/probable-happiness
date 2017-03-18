@@ -26,7 +26,8 @@ module.exports = (app) => {
 				programmingLanguages: programmingLanguages,
 				languages: languages,
 				cocurricular: cocurricular,
-				extracurricular: extracurricular
+				extracurricular: extracurricular,
+				evarsity: req.user.evarsity
 			}
 		)
 	})

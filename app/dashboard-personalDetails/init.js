@@ -19,7 +19,8 @@ module.exports = (app) => {
 				height: req.user.height,
 				weight: req.user.weight,
 				fName: req.user.fatherName,
-				mName: req.user.motherName
+				mName: req.user.motherName,
+				evarsity: req.user.evarsity
 			}
 		)
 	})
