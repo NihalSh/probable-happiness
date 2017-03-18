@@ -1,5 +1,7 @@
 const passport = require('passport')
 
+const User = require('../user').model
+
 module.exports = (app) => {
 	app.get('/dashboard/personalDetails', passport.authenticationMiddleware(), (req, res) => {
 		let date = null
@@ -22,6 +24,27 @@ module.exports = (app) => {
 		)
 	})
 	app.post('/dashboard/personalDetails', passport.authenticationMiddleware(), (req, res) => {
-		res.send(req.body)
+		let boarding = null
+		if (req.body.boarding === "true") {
+			boarding = true
+		} else if (req.body.boarding === "false") {
+			boarding = false
+		}
+		User.findOneAndUpdate({ email: req.user.email },
+			{
+				$set: {
+					'boarding': boarding,
+					'height': req.body['height'],
+					'weight': req.body['weight'],
+					'motherName': req.body['mName']
+				}
+			})
+			.exec()
+			.then(() => {
+				res.redirect('/dashboard/personalDetails')
+			})
+			.catch((err) => {
+				next(err)
+			})
 	})
 }
