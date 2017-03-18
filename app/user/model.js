@@ -66,6 +66,23 @@ let schema = mongoose.Schema({
 		type: String,
 		default: null
 	},
+
+	boarding: {
+		type: Boolean,
+		default: null
+	},
+	height: {
+		type: Number,
+		default: null
+	},
+	weight: {
+		type: Number,
+		default: null
+	},
+	motherName: {
+		type: String,
+		default: null
+	}
 })
 
 let user = mongoose.model('user', schema)
