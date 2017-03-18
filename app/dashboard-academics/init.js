@@ -23,6 +23,21 @@ module.exports = (app) => {
 		)
 	})
 	app.post('/dashboard/academics', passport.authenticationMiddleware(), (req, res) => {
-		res.send(req.body)
+		User.findOneAndUpdate({ email: req.user.email },
+			{
+				$set: {
+					'10pc': req.body['10pc'],
+					'10board': req.body['10board'],
+					'12pc': req.body['12pc'],
+					'12board': req.body['12board']
+				}
+			})
+			.exec()
+			.then(() => {
+				res.redirect('/dashboard/academics')
+			})
+			.catch((err) => {
+				next(err)
+			})
 	})
 }
