@@ -1,5 +1,7 @@
 const passport = require('passport')
 
+const User = require('../user').model
+
 module.exports = (app) => {
 	app.get('/dashboard/contactDetails', passport.authenticationMiddleware(), (req, res) => {
 		res.render('dashboard-contactDetails/dashboard-contactDetails',
@@ -15,6 +17,21 @@ module.exports = (app) => {
 		)
 	})
 	app.post('/dashboard/contactDetails', passport.authenticationMiddleware(), (req, res) => {
-		res.send(req.body)
+		User.findOneAndUpdate({ email: req.user.email },
+			{
+				$set: {
+					'currentAddress': req.body['cAddress'],
+					'personalEmail': req.body['pEmail'],
+					'parentsNumber': req.body['parentsTel'],
+					'personalNumber': req.body['personalTel']
+				}
+			})
+			.exec()
+			.then(() => {
+				res.redirect('/dashboard/contactDetails')
+			})
+			.catch((err) => {
+				next(err)
+			})
 	})
 }
