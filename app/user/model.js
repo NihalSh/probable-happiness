@@ -27,6 +27,23 @@ let schema = mongoose.Schema({
 	semester: {
 		type: Number,
 		required: true
+	},
+
+	'10pc': {
+		type: Number,
+		default: null
+	},
+	'10board': {
+		type: String,
+		default: null
+	},
+	'12pc': {
+		type: Number,
+		default: null
+	},
+	'12board': {
+		type: String,
+		default: null
 	}
 })
 

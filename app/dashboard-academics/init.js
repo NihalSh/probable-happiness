@@ -1,14 +1,16 @@
 const passport = require('passport')
 
+const User = require('../user').model
+
 module.exports = (app) => {
 	app.get('/dashboard/academics', passport.authenticationMiddleware(), (req, res) => {
 		res.render('dashboard-academics/dashboard-academics',
 			{
-				name: "John Doe",
-				'10pc': 80,
-				'10board': 'CBSE',
-				'12pc': 90,
-				'12board': 'ICSE',
+				name: req.user.name,
+				'10pc': req.user["10pc"],
+				'10board': req.user["10board"],
+				'12pc': req.user["12pc"],
+				'12board': req.user["12board"],
 				sgpa1: 5,
 				sgpa2: 6,
 				sgpa3: 7,
