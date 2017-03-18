@@ -33,6 +33,10 @@ let schema = mongoose.Schema({
 		type: Boolean,
 		default: null
 	},
+	evarsitySession: {
+		type: String,
+		default: null
+	},
 	sgpa1: {
 		type: Number,
 		default: null

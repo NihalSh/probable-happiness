@@ -1,7 +1,7 @@
 <div class="card" data-color="rose" id="wizardProfile">
     <form class="form-horizontal" action="/dashboard/evarsity" method="POST">
         <div class="card-header card-header-text" data-background-color="rose">
-            <h4 class="card-title">Login with E varsity</h4>
+            <h4 class="card-title">Login with e Varsity</h4>
         </div>
         <div class="card-content">
             <div class="row">
@@ -30,7 +30,19 @@
                     <div class="form-group label-floating">
                         <label class="control-label">Password
                         </label>
-                        <input name="password" type="password" class="form-control">
+                        <input name="password" type="password" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group col-xs-12 col-sm-8 col-sm-offset-2">
+                    <span class="input-group-addon">
+                        <img style='display:block; width:123px;height:40px;' src='data:image/jpeg;base64, {{captcha}}' />
+                    </span>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Captcha
+                        </label>
+                        <input name="captcha" type="text" class="form-control" required>
                     </div>
                 </div>
             </div>
