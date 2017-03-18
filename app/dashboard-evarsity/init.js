@@ -61,8 +61,6 @@ module.exports = (app) => {
 				})
 				.then((response) => {
 					grades = JSON.parse(response)
-					console.log(grades)
-					console.log(profile)
 					return User.findOneAndUpdate({ email: req.user.email },
 						{
 							$set: {
