@@ -85,6 +85,10 @@ let schema = mongoose.Schema({
 		type: String,
 		default: null
 	},
+	permanentAddress: {
+		type: String,
+		default: null
+	},
 
 	'10pc': {
 		type: Number,
@@ -103,10 +107,6 @@ let schema = mongoose.Schema({
 		default: null
 	},
 
-	permanentAddress: {
-		type: String,
-		default: null
-	},
 	currentAddress: {
 		type: String,
 		default: null

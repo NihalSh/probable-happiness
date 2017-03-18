@@ -43,9 +43,45 @@ module.exports = (app) => {
 					Authorization: `Basic ${basicAuth}`
 				}
 			}
+			let profile = null
+			let grades = null
 			request(option)
 				.then((response) => {
-					res.send("successful login")
+					let option = {
+						uri: `${config.evarsity.url}/profile/${req.user.evarsitySession}`
+					}
+					return request(option)
+				})
+				.then((response) => {
+					profile = JSON.parse(response)
+					let option = {
+						uri: `${config.evarsity.url}/grades/${req.user.evarsitySession}`
+					}
+					return request(option)
+				})
+				.then((response) => {
+					grades = JSON.parse(response)
+					console.log(grades)
+					console.log(profile)
+					return User.findOneAndUpdate({ email: req.user.email },
+						{
+							$set: {
+								sgpa1: grades.sgpa1,
+								sgpa2: grades.sgpa2,
+								sgpa3: grades.sgpa3,
+								sgpa4: grades.sgpa4,
+								sgpa5: grades.sgpa5,
+								cgpa: grades.cgpa,
+								bloodGroup: profile["Blood Group"],
+								gender: profile["Sex"],
+								dateOfBirth: new Date(profile["Date of Birth"]),
+								fatherName: profile["Father Name"],
+								permanentAddress: profile["Address"]
+							}
+						}).exec()
+				})
+				.then(() => {
+					res.send("information updated")
 				})
 				.catch((err) => {
 					req.log.error(err)
