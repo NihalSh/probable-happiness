@@ -29,6 +29,59 @@ let schema = mongoose.Schema({
 		required: true
 	},
 
+	evarsity: {
+		type: Boolean,
+		default: null
+	},
+	sgpa1: {
+		type: Number,
+		default: null
+	},
+	sgpa2: {
+		type: Number,
+		default: null
+	},
+	sgpa3: {
+		type: Number,
+		default: null
+	},
+	sgpa4: {
+		type: Number,
+		default: null
+	},
+	sgpa5: {
+		type: Number,
+		default: null
+	},
+	cgpa: {
+		type: Number,
+		default: null
+	},
+	historyArrears: {
+		type: Boolean,
+		default: null
+	},
+	standingArrears: {
+		type: Number,
+		default: null
+	},
+	bloodGroup: {
+		type: String,
+		default: null
+	},
+	dateOfBirth: {
+		type: Date,
+		default: null
+	},
+	gender: {
+		type: String,
+		default: null
+	},
+	fatherName: {
+		type: String,
+		default: null
+	},
+
 	'10pc': {
 		type: Number,
 		default: null
