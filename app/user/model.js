@@ -82,6 +82,23 @@ let schema = mongoose.Schema({
 	motherName: {
 		type: String,
 		default: null
+	},
+
+	programmingLanguages: {
+		type: Array,
+		default: null
+	},
+	languages: {
+		type: Array,
+		default: null
+	},
+	cocurricular: {
+		type: Array,
+		default: null
+	},
+	extracurricular: {
+		type: Array,
+		default: null
 	}
 })
 

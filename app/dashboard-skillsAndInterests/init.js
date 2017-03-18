@@ -4,11 +4,11 @@ module.exports = (app) => {
 	app.get('/dashboard/skillsAndInterests', passport.authenticationMiddleware(), (req, res) => {
 		res.render('dashboard-skillsAndInterests/dashboard-skillsAndInterests',
 			{
-				name: "John Doe",
-				programmingLanguages: null,
-				languages: null,
-				cocurricular: null,
-				extracurricular: null
+				name: req.user.name,
+				programmingLanguages: req.user.programmingLanguages,
+				languages: req.user.languages,
+				cocurricular: req.user.cocurricular,
+				extracurricular: req.user.extracurricular
 			}
 		)
 	})
