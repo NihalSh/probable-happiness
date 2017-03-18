@@ -19,6 +19,7 @@
 	<link href="/css/owl.carousel.css" media="screen" rel="stylesheet"><!-- Owl - Carousel -->
 	<link href="/css/owl.theme.css" media="screen" rel="stylesheet"><!-- Owl - Carousel -->
 	<link href="/css/owl.transitions.css" media="screen" rel="stylesheet"><!-- Owl - Carousel --><!-- Modernizer and IE specyfic files -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
 	<script src="/js/modernizr.custom.js">
 	</script>
 </head>
@@ -180,5 +181,10 @@
 	</script> <!-- Owl Carousel --> 
 	<script src="/js/main.js">
 	</script> <!-- Main Js file -->
+    <script src="https://unpkg.com/notie">
+    </script>
+    {{#if script}}
+    	<script>{{{script}}}</script>
+    {{/if}}
 </body>
 </html>

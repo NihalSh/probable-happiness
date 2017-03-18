@@ -39,21 +39,45 @@ passport.use(new GoogleStrategy({
 function initPassport (app) {
 
 	app.get('/login', passport.authenticate('google', { scope: ['email'] }))
-	app.get('/login/callback', passport.authenticate('google', { failureRedirect: '/' }),
+
+	app.get('/login/callback',
 		(req, res, next) => {
-			let promise = User.findOne({'email': req.user.email}).exec()
-			
-			promise.then((user) => {
-				if (user) {
-					req.log.trace(user);
-					res.redirect('/dashboard')
-				} else {
-					req.log.info("no user found, redirecting to academia")
-					res.redirect('/academia')
+			passport.authenticate('google',
+				(err, user, info) => {
+					if (err) {
+						return next(err)
+					}
+					if (!user) {
+						return res.render('home/home',
+							{
+								script: `
+									notie.alert({ type: 'error', text: 'Only @srmuniv.edu.in email id allowed', time: 6});
+									history.replaceState(null, null, "/");
+
+									`
+							}
+						)
+					}
+					let promise = User.findOne({'email': req.user.email}).exec()
+					promise.then((user) => {
+						req.logIn(user, (err) =>{
+						  		if (err) {
+						  			return next(err)
+								}
+								if (user) {
+									req.log.trace(user);
+									return res.redirect('/dashboard')
+								} else {
+									req.log.info("no user found, redirecting to academia")
+									return res.redirect('/academia')
+								}
+							}
+						)
+					}).catch((err) => {
+						return next(err)
+					})
 				}
-			}).catch((err) => {
-				next(err)
-			})
+			)(req, res, next)
 		}
 	)
 	

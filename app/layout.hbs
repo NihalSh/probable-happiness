@@ -11,6 +11,12 @@
     <link href="/css/material-dashboard.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CMaterial+Icons" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
+    <style>
+        .notie-container {
+            box-shadow: none;
+        }
+    </style>
 </head>
 <body>
     <div class="wrapper">
@@ -29,6 +35,11 @@
         </script>
         <script src="/js/material-dashboard.js" type="text/javascript">
         </script>
+        <script src="https://unpkg.com/notie">
+        </script>
+        {{#if script}}
+        	<script>{{{script}}}</script>
+        {{/if}}
     </div>
 </body>
 </html>
