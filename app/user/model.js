@@ -44,7 +44,28 @@ let schema = mongoose.Schema({
 	'12board': {
 		type: String,
 		default: null
-	}
+	},
+
+	permanentAddress: {
+		type: String,
+		default: null
+	},
+	currentAddress: {
+		type: String,
+		default: null
+	},
+	personalEmail: {
+		type: String,
+		default: null
+	},
+	parentsNumber: {
+		type: String,
+		default: null
+	},
+	personalNumber: {
+		type: String,
+		default: null
+	},
 })
 
 let user = mongoose.model('user', schema)
