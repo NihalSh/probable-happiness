@@ -17,8 +17,8 @@ module.exports = (app) => {
 				sgpa4: req.user.sgpa4,
 				sgpa5: req.user.sgpa5,
 				cgpa: req.user.cgpa,
-				historyArrears: null,
-				standingArrears: null,
+				historyArrears: req.user.historyArrears,
+				standingArrears: req.user.standingArrears,
 				evarsity: req.user.evarsity
 			}
 		)
