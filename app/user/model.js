@@ -61,6 +61,26 @@ let schema = mongoose.Schema({
 		type: Number,
 		default: null
 	},
+	sem1: {
+		type: Array,
+		default: null
+	},
+	sem2: {
+		type: Array,
+		default: null
+	},
+	sem3: {
+		type: Array,
+		default: null
+	},
+	sem4: {
+		type: Array,
+		default: null
+	},
+	sem5: {
+		type: Array,
+		default: null
+	},
 	historyArrears: {
 		type: Boolean,
 		default: null
