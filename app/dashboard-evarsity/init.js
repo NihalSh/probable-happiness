@@ -84,7 +84,6 @@ module.exports = (app) => {
 						}).exec()
 				})
 				.then(() => {
-					res.send("information updated")
 					res.render('dashboard-evarsity/evarsity',
 						{
 							script: `
@@ -99,7 +98,7 @@ module.exports = (app) => {
 					res.status(401).render('dashboard-evarsity/evarsity',
 						{
 							script: `
-								notie.alert({ type: 'success', text: 'Login failed', time: 3});
+								notie.alert({ type: 'error', text: 'Login failed', time: 3});
 								setTimeout( function() { window.location.href = '/dashboard/evarsity';}, 4000);
 
 								`

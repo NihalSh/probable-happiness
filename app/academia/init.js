@@ -17,7 +17,6 @@ module.exports = (app) => {
 		} else {
 			res.render('academia/academia-login', { 
 				email: req.user.email,
-				layout: false
 			})
 		}
 	})
@@ -65,6 +64,7 @@ module.exports = (app) => {
 						req.log.error(err)
 						res.status(401).render('academia/academia-login',
 							{
+								email: req.user.email,
 								script: `
 									notie.alert({ type: 'error', text: 'Login failed', time: 3});
 									history.replaceState(null, null, "/academia");

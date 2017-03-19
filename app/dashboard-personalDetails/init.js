@@ -46,7 +46,7 @@ module.exports = (app) => {
 					{
 						script: `
 							notie.alert({ type: 'success', text: 'Response recorded', time: 3});
-							history.replaceState(null, null, "/dashboard/personalDetails");
+							setTimeout( function() { window.location.href = '/dashboard/personalDetails';}, 3100);
 
 							`
 					})
@@ -57,7 +57,7 @@ module.exports = (app) => {
 					{
 						script: `
 							notie.alert({ type: 'error', text: 'Check the data and try again', time: 3});
-							history.replaceState(null, null, "/dashboard/personalDetails");
+							setTimeout( function() { window.location.href = '/dashboard/personalDetails';}, 3100);
 
 							`
 					})

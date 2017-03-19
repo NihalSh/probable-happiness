@@ -48,34 +48,39 @@ function initPassport (app) {
 						return next(err)
 					}
 					if (!user) {
+						req.logout()
 						return res.render('home/home',
 							{
 								script: `
-									notie.alert({ type: 'error', text: 'Only @srmuniv.edu.in email id allowed', time: 6});
+									notie.alert({ type: 'error', text: 'Only @srmuniv.edu.in email id allowed, signing out of Google', time: 6});
 									history.replaceState(null, null, "/");
+									setTimeout( function() { window.location.href = "https://accounts.google.com/Logout"; }, 7000);
 
 									`
 							}
 						)
 					}
-					let promise = User.findOne({'email': req.user.email}).exec()
-					promise.then((user) => {
-						req.logIn(user, (err) =>{
-						  		if (err) {
-						  			return next(err)
-								}
-								if (user) {
-									req.log.trace(user);
-									return res.redirect('/dashboard')
-								} else {
-									req.log.info("no user found, redirecting to academia")
-									return res.redirect('/academia')
-								}
-							}
-						)
-					}).catch((err) => {
-						return next(err)
-					})
+					req.logIn(user, (err) => {
+					    	if (err) {
+					      		return next(err)
+					      	}
+							let promise = User.findOne({'email': user.email}).exec()
+							promise.then((user) => {
+							  		if (err) {
+							  			return next(err)
+									}
+									if (user) {
+										req.log.trace(user);
+										return res.redirect('/dashboard')
+									} else {
+										req.log.info("no user found, redirecting to academia")
+										return res.redirect('/academia')
+									}
+							}).catch((err) => {
+								return next(err)
+							})
+				    	}
+				    )
 				}
 			)(req, res, next)
 		}

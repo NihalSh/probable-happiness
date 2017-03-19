@@ -52,7 +52,7 @@ module.exports = (app) => {
 						name: req.user.name,
 						script: `
 							notie.alert({ type: 'success', text: 'Response recorded', time: 3});
-							history.replaceState(null, null, "/dashboard/skillsAndInterests");
+							setTimeout( function() { window.location.href = '/dashboard/skillsAndInterests';}, 3100);
 
 							`
 					})
@@ -64,7 +64,7 @@ module.exports = (app) => {
 						name: req.user.name,
 						script: `
 							notie.alert({ type: 'error', text: 'Check the data and try again', time: 3});
-							history.replaceState(null, null, "/dashboard/skillsAndInterests");
+							setTimeout( function() { window.location.href = '/dashboard/skillsAndInterests';}, 3100);
 
 							`
 					})
