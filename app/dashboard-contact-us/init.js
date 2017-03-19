@@ -5,7 +5,8 @@ module.exports = (app) => {
 		res.render("dashboard-contact-us/dashboard-contact-us", 
 			{
 				name: req.user.name,
-				evarsity: req.user.evarsity
+				evarsity: req.user.evarsity,
+				image: req.user.image
 			}
 		)
 	})

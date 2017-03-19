@@ -13,7 +13,8 @@ module.exports = (app) => {
 				pEmail: req.user.personalEmail,
 				parentsTel: req.user.parentsNumber,
 				personalTel: req.user.personalNumber,
-				evarsity: req.user.evarsity
+				evarsity: req.user.evarsity,
+				image: req.user.image
 			}
 		)
 	})

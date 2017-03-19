@@ -27,7 +27,8 @@ module.exports = (app) => {
 				languages: languages,
 				cocurricular: cocurricular,
 				extracurricular: extracurricular,
-				evarsity: req.user.evarsity
+				evarsity: req.user.evarsity,
+				image: req.user.image
 			}
 		)
 	})

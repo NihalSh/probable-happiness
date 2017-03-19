@@ -7,7 +7,7 @@
     </div>
     <div class="sidebar-wrapper">
         <div class="user">
-            <div class="photo"><img alt="avatar" src="/img/default-avatar.png"></div>
+            <div class="photo"><img alt="avatar" src="{{#if image}}data:image/jpeg;base64, {{image}}{{else}}/img/default-avatar.png{{/if}}"></div>
             <div class="info">
                 <a>{{name}}</a>
             </div>

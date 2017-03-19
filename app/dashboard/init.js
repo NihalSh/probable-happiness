@@ -9,7 +9,8 @@ module.exports = (app) => {
 				program: req.user.program,
 				department: req.user.department,
 				semester: req.user.semester,
-				evarsity: req.user.evarsity
+				evarsity: req.user.evarsity,
+				image: req.user.image
 			}
 		)
 	})

@@ -37,6 +37,10 @@ let schema = mongoose.Schema({
 		type: String,
 		default: null
 	},
+	image: {
+		type: String,
+		default: null
+	},
 	sgpa1: {
 		type: Number,
 		default: null

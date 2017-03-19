@@ -23,7 +23,8 @@ module.exports = (app) => {
 						{
 							regno: req.user.registrationNumber,
 							captcha: captcha,
-							evarsity: req.user.evarsity
+							evarsity: req.user.evarsity,
+							image: req.user.image
 						}
 					)
 				})
@@ -79,6 +80,7 @@ module.exports = (app) => {
 								sem5: grades.sem5,
 								historyArrears: grades.historyArrears,
 								standingArrears: grades.standingArrears,
+								image: profile['image'],
 								bloodGroup: profile["Blood Group"],
 								gender: profile["Sex"],
 								dateOfBirth: new Date(profile["Date of Birth"]),

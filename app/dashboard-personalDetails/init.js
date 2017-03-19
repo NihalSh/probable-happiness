@@ -20,7 +20,8 @@ module.exports = (app) => {
 				weight: req.user.weight,
 				fName: req.user.fatherName,
 				mName: req.user.motherName,
-				evarsity: req.user.evarsity
+				evarsity: req.user.evarsity,
+				image: req.user.image
 			}
 		)
 	})
