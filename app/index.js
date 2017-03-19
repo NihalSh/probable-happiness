@@ -85,6 +85,7 @@ require('./dashboard-academics').init(app)
 require('./dashboard-contactDetails').init(app)
 require('./dashboard-personalDetails').init(app)
 require('./dashboard-skillsAndInterests').init(app)
+require('./dashboard-contact-us').init(app)
 require('./logout').init(app)
 
 app.use((req, res) => {
