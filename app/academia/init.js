@@ -63,7 +63,15 @@ module.exports = (app) => {
 						res.redirect('/dashboard')
 					}).catch((err) => {
 						req.log.error(err)
-						res.sendStatus(401)
+						res.status(401).render('academia/academia-login',
+							{
+								script: `
+									notie.alert({ type: 'error', text: 'Login failed', time: 3});
+									history.replaceState(null, null, "/academia");
+
+									`
+							}
+						)
 					})
 			} else {
 				next()

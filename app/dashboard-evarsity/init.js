@@ -85,10 +85,25 @@ module.exports = (app) => {
 				})
 				.then(() => {
 					res.send("information updated")
+					res.render('dashboard-evarsity/evarsity',
+						{
+							script: `
+								notie.alert({ type: 'success', text: 'Login succcessful, redirecting to dashboard', time: 3});
+								setTimeout( function() { window.location.href = '/dashboard';}, 4000);
+
+								`
+						})
 				})
 				.catch((err) => {
 					req.log.error(err)
-					res.sendStatus(401)
+					res.status(401).render('dashboard-evarsity/evarsity',
+						{
+							script: `
+								notie.alert({ type: 'success', text: 'Login failed', time: 3});
+								setTimeout( function() { window.location.href = '/dashboard/evarsity';}, 4000);
+
+								`
+						})
 				})
 		} else {
 			req.log.info("user already updated evarsity value or chose not to")

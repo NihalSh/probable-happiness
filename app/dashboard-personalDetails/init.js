@@ -42,10 +42,25 @@ module.exports = (app) => {
 			})
 			.exec()
 			.then(() => {
-				res.redirect('/dashboard/personalDetails')
+				res.render('dashboard-personalDetails/dashboard-personalDetails',
+					{
+						script: `
+							notie.alert({ type: 'success', text: 'Response recorded', time: 3});
+							history.replaceState(null, null, "/dashboard/personalDetails");
+
+							`
+					})
 			})
 			.catch((err) => {
-				next(err)
+				req.log.error(err)
+				res.render('dashboard-personalDetails/dashboard-personalDetails',
+					{
+						script: `
+							notie.alert({ type: 'error', text: 'Check the data and try again', time: 3});
+							history.replaceState(null, null, "/dashboard/personalDetails");
+
+							`
+					})
 			})
 	})
 }

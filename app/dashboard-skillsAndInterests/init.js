@@ -47,10 +47,27 @@ module.exports = (app) => {
 			})
 			.exec()
 			.then(() => {
-				res.redirect('/dashboard/skillsAndInterests')
+				res.render('dashboard-skillsAndInterests/dashboard-skillsAndInterests',
+					{
+						name: req.user.name,
+						script: `
+							notie.alert({ type: 'success', text: 'Response recorded', time: 3});
+							history.replaceState(null, null, "/dashboard/skillsAndInterests");
+
+							`
+					})
 			})
 			.catch((err) => {
-				next(err)
+				req.log.error(err)
+				res.render('dashboard-skillsAndInterests/dashboard-skillsAndInterests',
+					{
+						name: req.user.name,
+						script: `
+							notie.alert({ type: 'error', text: 'Check the data and try again', time: 3});
+							history.replaceState(null, null, "/dashboard/skillsAndInterests");
+
+							`
+					})
 			})
 	})
 }

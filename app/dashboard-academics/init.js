@@ -35,10 +35,25 @@ module.exports = (app) => {
 			})
 			.exec()
 			.then(() => {
-				res.redirect('/dashboard/academics')
+				res.render('dashboard-academics/dashboard-academics',
+					{
+						script: `
+							notie.alert({ type: 'success', text: 'Response recorded', time: 3});
+							history.replaceState(null, null, "/dashboard/academics");
+
+							`
+					})
 			})
 			.catch((err) => {
-				next(err)
+				req.log.error(err)
+				res.render('dashboard-academics/dashboard-academics',
+					{
+						script: `
+							notie.alert({ type: 'error', text: 'Check the data and try again', time: 3});
+							history.replaceState(null, null, "/dashboard/academics");
+
+							`
+					})
 			})
 	})
 }
