@@ -4,38 +4,10 @@ const request = require('request-promise-native')
 
 const config = require('../../config')
 const User = require('../user').model
+const dashboardHandler = require('../dashboard').handler
 
 module.exports = (app) => {
-	app.get('/dashboard/evarsity', passport.authenticationMiddleware(), (req, res, next) => {
-		if (req.user.evarsity === null) {
-			let option = {
-				uri: `${config.evarsity.url}`,
-				json: true
-			}
-			let captcha = null
-			request(option)
-				.then((response) => {
-					captcha = response[0]
-					return User.findOneAndUpdate({ email: req.user.email }, {$set: { evarsitySession: `${response[1]}`}}).exec()
-				})
-				.then(() => {
-					res.render('dashboard-evarsity/evarsity',
-						{
-							regno: req.user.registrationNumber,
-							captcha: captcha,
-							evarsity: req.user.evarsity,
-							image: req.user.image
-						}
-					)
-				})
-				.catch((err) => {
-					req.log.error(err)
-					res.sendStatus(401)
-				})
-		} else {
-			next()
-		}
-	})
+	app.get('/dashboard/evarsity', passport.authenticationMiddleware(), getHandler)
 	app.post('/dashboard/evarsity', passport.authenticationMiddleware(), (req, res) => {
 		if (req.user.evarsity === null) {
 			let basicAuth = new Buffer(`${req.user.registrationNumber}:${req.body.password}`).toString('base64')
@@ -90,32 +62,80 @@ module.exports = (app) => {
 							$unset: {
 								evarsitySession: null
 							}
-						}).exec()
-				})
-				.then(() => {
-					res.render('dashboard-evarsity/evarsity',
+						},
 						{
-							script: `
-								notie.alert({ type: 'success', text: 'Login succcessful, redirecting to dashboard', time: 3});
-								setTimeout( function() { window.location.href = '/dashboard';}, 4000);
-
+							new: true
+						}
+						)
+						.exec()
+					})
+				.then((doc) => {
+					req.user = doc
+					req.script = `
+									notie.alert({ type: 'success', text: 'Login succcessful, data recorded', time: 3});
+									history.replaceState(null, null, "/dashboard");
 								`
-						})
+					dashboardHandler(req, res)
 				})
 				.catch((err) => {
 					req.log.error(err)
-					res.status(401).render('dashboard-evarsity/evarsity',
-						{
-							script: `
-								notie.alert({ type: 'error', text: 'Login failed', time: 3});
-								setTimeout( function() { window.location.href = '/dashboard/evarsity';}, 4000);
-
-								`
-						})
+					req.script = `notie.alert({ type: 'error', text: 'Login failed', time: 3});`
+					getHandler(req, res)
 				})
 		} else {
 			req.log.info("user already updated evarsity value or chose not to")
 			next()
 		}
 	})
+}
+
+function getHandler (req, res, next) {
+	if (req.user.evarsity === null) {
+		let option = {
+			uri: `${config.evarsity.url}`,
+			json: true
+		}
+		let captcha = null
+		request(option)
+			.then((response) => {
+				captcha = response[0]
+				return User.findOneAndUpdate(
+					{
+						email: req.user.email
+					},
+					{
+						$set: { evarsitySession: `${response[1]}`}
+					},
+					{
+						new: true
+					}
+					)
+					.exec()
+			})
+			.then((doc) => {
+				req.user = doc
+				res.render('dashboard-evarsity/evarsity',
+					{
+						regno: req.user.registrationNumber,
+						captcha: captcha,
+						evarsity: req.user.evarsity,
+						image: req.user.image,
+						script: req.script
+					}
+				)
+			})
+			.catch((err) => {
+				let script = `notie.alert({ type: 'error', text: 'An error has occured', time: 3});`
+				req.log.error(err)
+				res.status(401)
+					.render('dashboard-evarsity/evarsity',
+						{
+							image: req.user.image,
+							script: req.script
+						}
+					)
+			})
+	} else {
+		next()
+	}
 }

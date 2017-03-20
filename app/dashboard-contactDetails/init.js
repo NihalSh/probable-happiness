@@ -3,21 +3,7 @@ const passport = require('passport')
 const User = require('../user').model
 
 module.exports = (app) => {
-	app.get('/dashboard/contactDetails', passport.authenticationMiddleware(), (req, res) => {
-		res.render('dashboard-contactDetails/dashboard-contactDetails',
-			{
-				name: req.user.name,
-				pAddress: req.user.permanentAddress,
-				cAddress: req.user.currentAddress,
-				email: req.user.email,
-				pEmail: req.user.personalEmail,
-				parentsTel: req.user.parentsNumber,
-				personalTel: req.user.personalNumber,
-				evarsity: req.user.evarsity,
-				image: req.user.image
-			}
-		)
-	})
+	app.get('/dashboard/contactDetails', passport.authenticationMiddleware(), getHandler)
 	app.post('/dashboard/contactDetails', passport.authenticationMiddleware(), (req, res) => {
 		User.findOneAndUpdate({ email: req.user.email },
 			{
@@ -27,28 +13,38 @@ module.exports = (app) => {
 					'parentsNumber': req.body['parentsTel'],
 					'personalNumber': req.body['personalTel']
 				}
-			})
+			},
+			{
+				new: true
+			}
+			)
 			.exec()
-			.then(() => {
-				res.render('dashboard-contactDetails/dashboard-contactDetails',
-					{
-						script: `
-							notie.alert({ type: 'success', text: 'Response recorded', time: 3});
-							setTimeout( function() { window.location.href = '/dashboard/contactDetails';}, 3100);
-
-							`
-					})
+			.then((doc) => {
+				req.user = doc
+				req.script = `notie.alert({ type: 'success', text: 'Response recorded', time: 3});`
+				getHandler(req, res)
 			})
 			.catch((err) => {
 				req.log.error(err)
-				res.render('dashboard-contactDetails/dashboard-contactDetails',
-					{
-						script: `
-							notie.alert({ type: 'error', text: 'Check the data and try again', time: 3});
-							setTimeout( function() { window.location.href = '/dashboard/contactDetails';}, 3100);
-
-							`
-					})
+				req.script = `notie.alert({ type: 'error', text: 'Check the data and try again', time: 3});`
+				getHandler(req, res)
 			})
 	})
+}
+
+function getHandler(req, res) {
+	res.render('dashboard-contactDetails/dashboard-contactDetails',
+		{
+			name: req.user.name,
+			pAddress: req.user.permanentAddress,
+			cAddress: req.user.currentAddress,
+			email: req.user.email,
+			pEmail: req.user.personalEmail,
+			parentsTel: req.user.parentsNumber,
+			personalTel: req.user.personalNumber,
+			evarsity: req.user.evarsity,
+			image: req.user.image,
+			script: req.script
+		}
+	)
 }
