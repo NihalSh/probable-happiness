@@ -7,7 +7,8 @@ module.exports = (req, res) => {
 			department: req.user.department,
 			semester: req.user.semester,
 			evarsity: req.user.evarsity,
-			image: req.user.image
+			image: req.user.image,
+			script: req.script
 		}
 	)
 }
