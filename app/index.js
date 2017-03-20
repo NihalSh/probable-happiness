@@ -6,6 +6,7 @@ const exphbs  = require('express-handlebars')
 const express = require('express')
 const helmet = require('helmet')
 const mongoose = require('mongoose')
+const mongoSanitize = require('express-mongo-sanitize')
 const passport = require('passport')
 const session = require('express-session')
 const RedisStore = require('connect-redis')(session)
@@ -72,6 +73,10 @@ app.use((req, res, next) => {
 })
 
 app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use(mongoSanitize({
+  replaceWith: '_'
+}))
 
 app.use(passport.initialize())
 app.use(passport.session())
