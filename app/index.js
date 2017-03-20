@@ -77,6 +77,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 require('./home').init(app)
+require('./howto').init(app)
 require('./authentication').init(app)
 require('./academia').init(app)
 require('./dashboard').init(app)
