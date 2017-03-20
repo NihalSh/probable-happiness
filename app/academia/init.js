@@ -13,7 +13,6 @@ module.exports = (app) => {
 		if (req.user.name) {
 			req.log.info('existing user')
 			res.redirect('/dashboard')
-			next()
 		} else {
 			res.render('academia/academia-login', { 
 				email: req.user.email,
