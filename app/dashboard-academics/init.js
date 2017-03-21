@@ -1,3 +1,4 @@
+const mongoSanitize = require('express-mongo-sanitize')
 const passport = require('passport')
 
 const User = require('../user').model
@@ -5,6 +6,9 @@ const User = require('../user').model
 module.exports = (app) => {
 	app.get('/dashboard/academics', passport.authenticationMiddleware(), getHandler)
 	app.post('/dashboard/academics', passport.authenticationMiddleware(), (req, res) => {
+		mongoSanitize.sanitize(req.body, {
+		  replaceWith: '_'
+		})
 		User.findOneAndUpdate({ email: req.user.email },
 			{
 				$set: {
