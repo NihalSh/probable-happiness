@@ -1,3 +1,4 @@
+const mongoSanitize = require('express-mongo-sanitize')
 const passport = require('passport')
 
 const User = require('../user').model
@@ -5,6 +6,9 @@ const User = require('../user').model
 module.exports = (app) => {
 	app.get('/dashboard/skillsAndInterests', passport.authenticationMiddleware(), getHandler)
 	app.post('/dashboard/skillsAndInterests', passport.authenticationMiddleware(), (req, res) => {
+		mongoSanitize.sanitize(req.body, {
+		  replaceWith: '_'
+		})
 		let programmingLanguages = req.body.programmingLanguages.split(',').map(Function.prototype.call, String.prototype.trim)
 		let languages = req.body.languages.split(',').map(Function.prototype.call, String.prototype.trim)
 		let cocurricular = req.body.cocurricular.split(',').map(Function.prototype.call, String.prototype.trim)
