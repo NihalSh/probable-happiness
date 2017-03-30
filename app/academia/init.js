@@ -26,6 +26,7 @@ module.exports = (app) => {
 			next()
 		} else {
 			if (req.body && req.body.password) {
+				let message = 'Login failed'
 				let basicAuth = new Buffer(`${req.user.email}:${req.body.password}`).toString('base64')
 				let loginOption = {
 					uri: `${config.academia.url}`,
@@ -45,14 +46,19 @@ module.exports = (app) => {
 						let mapped = mapper(response)
 						if (mapped !== null) {
 							console.log(mapped)
-							return new User({
-								email: req.user.email,
-								name: mapped['Name'],
-								registrationNumber: mapped['Registration Number'],
-								program: mapped['Program'],
-								department: mapped['Department'],
-								semester: +mapped['Semester']
-							}).save();
+							if ((mapped['Department'] === 'Computer Science and Engineering') &&  (+mapped['Semester'] === 6)) {
+								return new User({
+									email: req.user.email,
+									name: mapped['Name'],
+									registrationNumber: mapped['Registration Number'],
+									program: mapped['Program'],
+									department: mapped['Department'],
+									semester: +mapped['Semester']
+								}).save();
+							} else {
+								message = 'This portal is only for semester 6 CSE students'
+								throw new Error('non CSE student')
+							}
 						} else {
 							throw new Error('academia response parsing error')
 						}
@@ -65,7 +71,7 @@ module.exports = (app) => {
 							{
 								email: req.user.email,
 								script: `
-									notie.alert({ type: 'error', text: 'Login failed', time: 3});
+									notie.alert({ type: 'error', text: '${message}', time: 3});
 									history.replaceState(null, null, "/academia");
 
 									`
